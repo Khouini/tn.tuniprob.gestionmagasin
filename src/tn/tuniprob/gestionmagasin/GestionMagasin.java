@@ -98,8 +98,24 @@ public class GestionMagasin {
         MM.ajouter(R2);
         Responsable NA = new Responsable(1000, 5, "Ahmed", "A", 100);
         MM.ajouter(NA);
-        System.out.println(MM.toString());
         System.out.println("--------------- Question 3 ----------------");
-
+        System.out.println(C1.toString());
+        System.out.println(C2.toString());
+        System.out.println(C3.toString());
+        System.out.println(R1.toString());
+        System.out.println(V1.toString());
+        System.out.println(C4.toString());
+        System.out.println(V2.toString());
+        System.out.println(V3.toString());
+        System.out.println(V4.toString());
+        System.out.println(R2.toString());      
+        System.out.println("--------------- Question 4 ----------------");
+        MC.ajouter(P1);
+        MC.ajouter(P3);
+        MM.ajouter(P4);
+        MM.ajouter(P5);
+        System.out.println("--------------- Question 5 ----------------");
+        System.out.println(MM.toString());
+        System.out.println(MC.toString());
     }
 }
