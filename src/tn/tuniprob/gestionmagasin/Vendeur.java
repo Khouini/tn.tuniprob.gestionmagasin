@@ -20,7 +20,12 @@ public class Vendeur extends Employee {
 
     @Override
     public String toString() {
-        return "Vendeur{" + "id=" + super.getId() + ", nom=" + super.getNom() + ", adresse=" + super.getAdresse() + ", nb_heures=" + super.getNb_heures() + "tauxDeVente=" + tauxDeVente + '}';
+        return "Vendeur{" + "id=" + super.getId() + ", nom=" + super.getNom() + ", adresse=" + super.getAdresse() + ", nb_heures=" + super.getNb_heures() + ", tauxDeVente=" + tauxDeVente + '}';
+    }
+
+    @Override
+    public double getSalaire() {
+        return 450 * tauxDeVente;
     }
 
 }

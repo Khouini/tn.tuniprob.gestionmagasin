@@ -74,11 +74,11 @@ public class GestionMagasin {
         System.out.println(MM.toString());
         System.out.println("--------------- Question 2 ----------------");
         // Magasin 1 carrefour
-        Caissier C1 = new Caissier(100, 1, "Yacine1", "Khouini", 100);
-        Caissier C2 = new Caissier(100, 2, "Yacin2", "Khouini", 100);
-        Caissier C3 = new Caissier(100, 3, "Yacine4", "Khouini", 100);
-        Responsable R1 = new Responsable(100, 4, "Yacine", "Khouini", 100);
-        Vendeur V1 = new Vendeur(5, 5, "Flen", "Fouleni", 0);
+        Caissier C1 = new Caissier(100, 1, "Yacine1", "Khouini", 98);
+        Caissier C2 = new Caissier(100, 2, "Yacin2", "Khouini", 134);
+        Caissier C3 = new Caissier(100, 3, "Yacine4", "Khouini", 220);
+        Responsable R1 = new Responsable(100, 4, "Yacine", "Khouini", 160);
+        Vendeur V1 = new Vendeur(5, 5, "Flen", "Fouleni", 10);
         MC.ajouter(C1);
         MC.ajouter(C2);
         MC.ajouter(C3);
@@ -108,7 +108,7 @@ public class GestionMagasin {
         System.out.println(V2.toString());
         System.out.println(V3.toString());
         System.out.println(V4.toString());
-        System.out.println(R2.toString());      
+        System.out.println(R2.toString());
         System.out.println("--------------- Question 4 ----------------");
         MC.ajouter(P1);
         MC.ajouter(P3);
@@ -117,5 +117,7 @@ public class GestionMagasin {
         System.out.println("--------------- Question 5 ----------------");
         System.out.println(MM.toString());
         System.out.println(MC.toString());
+        System.out.println("--------------- Question 6 ----------------");
+        System.out.println(MC.getEemployeesSalaries());
     }
 }

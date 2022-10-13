@@ -20,7 +20,7 @@ public class Magasin {
     private int nbEmployees;
     private Produit[] ensembleProduits;
     private Employee[] ensembleEmployees;
-
+    private String currency = "TND";
     private static int maxProduits = 50;
     private static int maxEmployees = 20;
 
@@ -181,7 +181,7 @@ public class Magasin {
         res += "\nListe des employées: \n";
         for (int i = 0; i < this.nbEmployees; i++) {
             res += "Employee n°" + (i + 1) + ":\n";
-            res += ensembleEmployees[i].toString() + ":\n";
+            res += ensembleEmployees[i].toString() + "\n";
         }
         if (this.nbEmployees == 0) {
             res += "0 Employées";
@@ -197,7 +197,7 @@ public class Magasin {
                 break;
             }
         }
-        if (index == 49) {
+        if (index == maxProduits - 1) {
             ensembleProduits[index] = null;
         }
         for (int i = index; i < capaciteMagasin; i++) {
@@ -214,5 +214,14 @@ public class Magasin {
             return M2;
         }
         return null;
+    }
+
+    public String getEemployeesSalaries() {
+        String res = "Affichage des salaires des employées:\n";
+        for (int i = 0; i < this.nbEmployees; i++) {
+            res += "Employee n°" + (i + 1) + ":\n";
+            res += ensembleEmployees[i].toString() + " Salary: " + ensembleEmployees[i].getSalaire() + " " + currency + "\n";
+        }
+        return res;
     }
 }

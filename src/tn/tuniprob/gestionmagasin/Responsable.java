@@ -16,6 +16,9 @@ public class Responsable extends Employee {
     public Responsable(double prime, int id, String nom, String adresse, double nb_heures) {
         super(id, nom, adresse, nb_heures);
         this.prime = prime;
+        super.setHourPrice(10);
+        super.setSuprHourPricePercentage(20);
+        super.setNbHoursSupp(160);
     }
 
     public double getPrime() {
@@ -24,7 +27,7 @@ public class Responsable extends Employee {
 
     @Override
     public String toString() {
-        return "Responsable{" + "id=" + super.getId() + ", nom=" + super.getNom() + ", adresse=" + super.getAdresse() + ", nb_heures=" + super.getNb_heures() + "prime=" + prime + '}';
+        return "Responsable{" + "id=" + super.getId() + ", nom=" + super.getNom() + ", adresse=" + super.getAdresse() + ", nb_heures=" + super.getNb_heures() + ", prime=" + prime + '}';
     }
 
 }

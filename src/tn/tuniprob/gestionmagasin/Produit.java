@@ -86,15 +86,13 @@ public class Produit {
     /*public String toString() {
         return "ID: " + id + "\n" + "libelle: " + libelle + "\n" + "marque: " + marque + "\n" + "prix: " + prix + "\nDate: " + expirationDate + "\n";
     }*/
-
     @Override
     public String toString() {
         return "Produit{" + "id=" + id + ", libelle=" + libelle + ", marque=" + marque + ", prix=" + prix + ", expirationDate=" + expirationDate + '}';
     }
-    
 
     public boolean comparer(Produit P) {
         return ((P.id == id) && (P.libelle == libelle) && (P.prix == prix));
     }
-       
+
 }

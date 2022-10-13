@@ -16,6 +16,9 @@ public class Caissier extends Employee {
     public Caissier(int numeroDeCaisse, int id, String nom, String adresse, double nb_heures) {
         super(id, nom, adresse, nb_heures);
         this.numeroDeCaisse = numeroDeCaisse;
+        super.setHourPrice(5);
+        super.setSuprHourPricePercentage(15);
+        super.setNbHoursSupp(180);
     }
 
     public int getNumeroDeCaisse() {
