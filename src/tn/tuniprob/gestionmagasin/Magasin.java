@@ -224,4 +224,14 @@ public class Magasin {
         }
         return res;
     }
+    
+    public float calculStock(){
+        float totalQuantite = 0f;
+        for (int i = 0; i < this.capaciteMagasin; i++) {
+            if (ensembleProduits[i] instanceof ProduitFruit){
+                totalQuantite += ensembleProduits[i].getQuantite();
+            }
+        }
+        return totalQuantite;
+    }
 }

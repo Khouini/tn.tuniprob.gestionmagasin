@@ -6,17 +6,19 @@
 package tn.tuniprob.gestionmagasin;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 
 /**
  *
  * @author Trunks
  */
-public class Produit {
+public class Produit implements Critere {
 
     private int id;
     private String libelle, marque;
     private float prix;
     private LocalDateTime expirationDate;
+    private float quantite;
 
     public void setPrix(float nvPrice) {
         if (prix >= 0) {
@@ -48,6 +50,10 @@ public class Produit {
         id = nvId;
     }
 
+    public float getQuantite() {
+        return quantite;
+    }
+
     public void setLibelle(String libelle) {
         this.libelle = libelle;
     }
@@ -75,6 +81,21 @@ public class Produit {
 
     }
 
+    public Produit(int id, String libelle, float quantite) {
+        this.id = id;
+        this.libelle = libelle;
+        this.quantite = quantite;
+    }
+
+    public Produit(int id, String libelle, String marque, float prix, LocalDateTime expirationDate, float quantite) {
+        this.id = id;
+        this.libelle = libelle;
+        this.marque = marque;
+        this.prix = prix;
+        this.expirationDate = expirationDate;
+        this.quantite = quantite;
+    }
+
     public void afficher() {
         System.out.println("ID: " + this.id);
         System.out.println("libelle: " + this.libelle);
@@ -86,13 +107,87 @@ public class Produit {
     /*public String toString() {
         return "ID: " + id + "\n" + "libelle: " + libelle + "\n" + "marque: " + marque + "\n" + "prix: " + prix + "\nDate: " + expirationDate + "\n";
     }*/
-    @Override
+ /*@Override
     public String toString() {
         return "Produit{" + "id=" + id + ", libelle=" + libelle + ", marque=" + marque + ", prix=" + prix + ", expirationDate=" + expirationDate + '}';
+    }*/
+    @Override
+    public String toString() {
+        return "Produit{" + "id=" + id + ", libelle=" + libelle + ", marque=" + marque + ", prix=" + prix + ", expirationDate=" + expirationDate + ", quantite=" + quantite + '}';
     }
 
+    /*@Override
+    public String toString() {
+        return "Produit{" + "id=" + id + ", libelle=" + libelle + ", quantite=" + quantite + '}';
+    }*/
     public boolean comparer(Produit P) {
         return ((P.id == id) && (P.libelle == libelle) && (P.prix == prix));
     }
 
+    public String determinerTypeProduit() {
+        if (this instanceof ProduitFruit) {
+            //return ProduitFruit.getType();
+            return ((ProduitFruit) this).getType();
+        } else if (this instanceof ProduitLegume) {
+            return ((ProduitLegume) this).getType();
+        } else {
+            return "autre";
+        }
+    }
+
+    public boolean estFrais(String saison) {
+        if (this instanceof ProduitFruit) {
+            String ch1 = (saison.toLowerCase());
+            String ch2 = (((ProduitFruit) this).getSaison().toLowerCase());
+            boolean test = ch1.equals(ch2);
+            if (test) {
+                return true;
+            }
+        }
+        if (this instanceof ProduitLegume) {
+            int monthNumber = getMounthNumber(((ProduitLegume) this).getSaison());
+            int parmMonthNumber = getMounthNumber(saison);
+            if (monthNumber == -1) {
+                return false;
+            } else {
+                boolean test = (parmMonthNumber - monthNumber) == 0 || (parmMonthNumber - monthNumber) == 1;
+                if (test) {
+                    return true;
+                }
+                return false;
+            }
+        }
+        return false;
+    }
+
+    private int getMounthNumber(String monthName) {
+        switch (monthName.toLowerCase()) {
+            case "janvier":
+                return 1;
+            case "fevrier":
+                return 2;
+            case "mars":
+                return 3;
+            case "avril":
+                return 4;
+            case "mai":
+                return 5;
+            case "juin":
+                return 6;
+            case "juillet":
+                return 7;
+            case "aout":
+                return 8;
+            case "septembre":
+                return 9;
+            case "octobre":
+                return 10;
+            case "novembre":
+                return 11;
+            case "décembre":
+                return 12;
+            default:
+                return -1;
+        }
+    }
 }
