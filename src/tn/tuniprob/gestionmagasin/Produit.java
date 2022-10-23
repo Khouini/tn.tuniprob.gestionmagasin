@@ -147,7 +147,7 @@ public class Produit implements Critere {
         if (this instanceof ProduitLegume) {
             int monthNumber = getMounthNumber(((ProduitLegume) this).getSaison());
             int parmMonthNumber = getMounthNumber(saison);
-            if (monthNumber == -1) {
+            if (monthNumber == -1 || parmMonthNumber == -1) {
                 return false;
             } else {
                 boolean test = (parmMonthNumber - monthNumber) == 0 || (parmMonthNumber - monthNumber) == 1;
