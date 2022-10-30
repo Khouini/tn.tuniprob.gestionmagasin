@@ -21,7 +21,8 @@ public class Magasin {
     private Produit[] ensembleProduits;
     private Employee[] ensembleEmployees;
     private String currency = "TND";
-    private static int maxProduits = 50;
+    //private static int maxProduits = 50;
+    private static int maxProduits = 2;
     private static int maxEmployees = 20;
 
     public Magasin(int id, String name, String adresse) {
@@ -98,7 +99,7 @@ public class Magasin {
         return false;
     }
 
-    public boolean ajouter(Produit p) {
+    /*public boolean ajouter(Produit p) {
         if (this.capaciteMagasin < maxProduits) {
             if (chercher(p) == false) {
                 ensembleProduits[this.capaciteMagasin] = p;
@@ -109,51 +110,28 @@ public class Magasin {
             }
         }
         return false;
+    }*/
+    public boolean ajouter(Produit p) throws MagasinPleinException, PrixNegatifException {
+        if (p.getPrix() < 0) {
+            throw new PrixNegatifException("Prix est négatif !!");
+        }
+        if (chercher(p) == false) {
+            try {
+                ensembleProduits[this.capaciteMagasin] = p;
+                this.capaciteMagasin++;
+                return true;
+            } catch (Exception e) {
+                throw new MagasinPleinException("Nombre maximal de produits est: " + maxProduits);
+            }
+        } else {
+            return false;
+        }
     }
 
     public boolean ajouter(Employee E) {
         if (this.nbEmployees < maxEmployees) {
             if (chercher(E) == false) {
                 ensembleEmployees[this.nbEmployees] = E;
-                this.nbEmployees++;
-                return true;
-            } else {
-                return false;
-            }
-        }
-        return false;
-    }
-
-    public boolean ajouter(Caissier C) {
-        if (this.nbEmployees < maxEmployees) {
-            if (chercher(C) == false) {
-                ensembleEmployees[this.nbEmployees] = C;
-                this.nbEmployees++;
-                return true;
-            } else {
-                return false;
-            }
-        }
-        return false;
-    }
-
-    public boolean ajouter(Responsable R) {
-        if (this.nbEmployees < maxEmployees) {
-            if (chercher(R) == false) {
-                ensembleEmployees[this.nbEmployees] = R;
-                this.nbEmployees++;
-                return true;
-            } else {
-                return false;
-            }
-        }
-        return false;
-    }
-
-    public boolean ajouter(Vendeur V) {
-        if (this.nbEmployees < maxEmployees) {
-            if (chercher(V) == false) {
-                ensembleEmployees[this.nbEmployees] = V;
                 this.nbEmployees++;
                 return true;
             } else {
@@ -224,11 +202,11 @@ public class Magasin {
         }
         return res;
     }
-    
-    public float calculStock(){
+
+    public float calculStock() {
         float totalQuantite = 0f;
         for (int i = 0; i < this.capaciteMagasin; i++) {
-            if (ensembleProduits[i] instanceof ProduitFruit){
+            if (ensembleProduits[i] instanceof ProduitFruit) {
                 totalQuantite += ((ProduitAgricole) ensembleProduits[i]).getQuantite();
             }
         }
