@@ -32,7 +32,7 @@ public class GestionMagasin {
         System.out.println("Le type du P5: " + P5.determinerTypeProduit());
         System.out.println("--------------- Question 5 ----------------");
         System.out.println("La quantite total des fruits: " + MC.calculStock());
-        System.out.println("--------------- Question 5 ----------------");
+        System.out.println("--------------- Question 6 ----------------");
         System.out.println(P1.estFrais("MaRs"));
         System.out.println(P4.estFrais("fevrier"));
     }

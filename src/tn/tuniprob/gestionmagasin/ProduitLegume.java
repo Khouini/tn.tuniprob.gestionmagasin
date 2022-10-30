@@ -9,28 +9,9 @@ package tn.tuniprob.gestionmagasin;
  *
  * @author Trunks
  */
-public class ProduitLegume extends Produit {
-
-    final private String type = "Legume";
-    private String saison;
+public class ProduitLegume extends ProduitAgricole {
 
     public ProduitLegume(int id, String libelle, float quantite, String saison) {
-        super(id, libelle, quantite);
-        this.saison = saison;
+        super(saison, quantite, id, libelle);
     }
-
-    public String getType() {
-        return type;
-    }
-
-    public String getSaison() {
-        return saison;
-    }
-
-    @Override
-    public String toString() {
-
-        return "ProduitLegume{" + "id=" + super.getId() + ", libelle=" + super.getLibelle() + ", quantite=" + super.getQuantite() + ", type=" + type + ", saison=" + saison + '}';
-    }
-
 }

@@ -229,7 +229,7 @@ public class Magasin {
         float totalQuantite = 0f;
         for (int i = 0; i < this.capaciteMagasin; i++) {
             if (ensembleProduits[i] instanceof ProduitFruit){
-                totalQuantite += ensembleProduits[i].getQuantite();
+                totalQuantite += ((ProduitAgricole) ensembleProduits[i]).getQuantite();
             }
         }
         return totalQuantite;

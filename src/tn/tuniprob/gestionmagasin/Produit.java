@@ -13,58 +13,58 @@ import java.util.Date;
  * @author Trunks
  */
 public class Produit implements Critere {
-
+    
     private int id;
     private String libelle, marque;
     private float prix;
     private LocalDateTime expirationDate;
-    private float quantite;
-
+    
     public void setPrix(float nvPrice) {
         if (prix >= 0) {
             prix = nvPrice;
         }
     }
-
+    
     public int getId() {
         return id;
     }
-
+    
     public String getLibelle() {
         return libelle;
     }
-
+    
     public String getMarque() {
         return marque;
     }
-
+    
     public float getPrix() {
         return prix;
     }
-
+    
     public LocalDateTime getExpirationDate() {
         return expirationDate;
     }
-
+    
     public void setId(int nvId) {
         id = nvId;
     }
-
-    public float getQuantite() {
-        return quantite;
-    }
-
+    
     public void setLibelle(String libelle) {
         this.libelle = libelle;
     }
-
+    
     public void setExpirationDate(LocalDateTime date) {
         this.expirationDate = date;
     }
-
+    
     public Produit() {
     }
-
+    
+    public Produit(int id, String libelle) {
+        this.id = id;
+        this.libelle = libelle;
+    }
+    
     public Produit(int id, String libelle, String marque, float prix) {
         this.id = id;
         this.libelle = libelle;
@@ -73,29 +73,14 @@ public class Produit implements Critere {
             this.prix = prix;
         }
     }
-
+    
     public Produit(int id, String libelle, String marque) {
         this.id = id;
         this.libelle = libelle;
         this.marque = marque;
-
+        
     }
-
-    public Produit(int id, String libelle, float quantite) {
-        this.id = id;
-        this.libelle = libelle;
-        this.quantite = quantite;
-    }
-
-    public Produit(int id, String libelle, String marque, float prix, LocalDateTime expirationDate, float quantite) {
-        this.id = id;
-        this.libelle = libelle;
-        this.marque = marque;
-        this.prix = prix;
-        this.expirationDate = expirationDate;
-        this.quantite = quantite;
-    }
-
+    
     public void afficher() {
         System.out.println("ID: " + this.id);
         System.out.println("libelle: " + this.libelle);
@@ -107,13 +92,9 @@ public class Produit implements Critere {
     /*public String toString() {
         return "ID: " + id + "\n" + "libelle: " + libelle + "\n" + "marque: " + marque + "\n" + "prix: " + prix + "\nDate: " + expirationDate + "\n";
     }*/
- /*@Override
-    public String toString() {
-        return "Produit{" + "id=" + id + ", libelle=" + libelle + ", marque=" + marque + ", prix=" + prix + ", expirationDate=" + expirationDate + '}';
-    }*/
     @Override
     public String toString() {
-        return "Produit{" + "id=" + id + ", libelle=" + libelle + ", marque=" + marque + ", prix=" + prix + ", expirationDate=" + expirationDate + ", quantite=" + quantite + '}';
+        return "Produit{" + "id=" + id + ", libelle=" + libelle + ", marque=" + marque + ", prix=" + prix + ", expirationDate=" + expirationDate + '}';
     }
 
     /*@Override
@@ -121,31 +102,31 @@ public class Produit implements Critere {
         return "Produit{" + "id=" + id + ", libelle=" + libelle + ", quantite=" + quantite + '}';
     }*/
     public boolean comparer(Produit P) {
-        return ((P.id == id) && (P.libelle == libelle) && (P.prix == prix));
+        return ((P.id == id) && (P.libelle.equals(libelle)) && (P.prix == prix));
     }
-
+    
     public String determinerTypeProduit() {
         if (this instanceof ProduitFruit) {
-            //return ProduitFruit.getType();
-            return ((ProduitFruit) this).getType();
+            return "Fruit";
         } else if (this instanceof ProduitLegume) {
-            return ((ProduitLegume) this).getType();
+            return "Legume";
         } else {
             return "autre";
         }
     }
-
+    
+    @Override
     public boolean estFrais(String saison) {
-        if (this instanceof ProduitFruit) {
+        if (determinerTypeProduit().equals("Fruit")) {
             String ch1 = (saison.toLowerCase());
-            String ch2 = (((ProduitFruit) this).getSaison().toLowerCase());
+            String ch2 = (((ProduitAgricole) this).getSaison().toLowerCase());
             boolean test = ch1.equals(ch2);
             if (test) {
                 return true;
             }
         }
-        if (this instanceof ProduitLegume) {
-            int monthNumber = getMounthNumber(((ProduitLegume) this).getSaison());
+        if (determinerTypeProduit().equals("Legume")) {
+            int monthNumber = getMounthNumber(((ProduitAgricole) this).getSaison());
             int parmMonthNumber = getMounthNumber(saison);
             if (monthNumber == -1 || parmMonthNumber == -1) {
                 return false;
@@ -159,7 +140,7 @@ public class Produit implements Critere {
         }
         return false;
     }
-
+    
     private int getMounthNumber(String monthName) {
         switch (monthName.toLowerCase()) {
             case "janvier":
