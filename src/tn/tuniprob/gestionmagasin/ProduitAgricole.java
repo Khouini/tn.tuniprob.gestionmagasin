@@ -26,6 +26,11 @@ public class ProduitAgricole extends Produit{
     public float getQuantite() {
         return quantite;
     }
+
+    @Override
+    public String toString() {
+        return "ProduitAgricole{" + "id=" + super.getId() + ", libelle=" + super.getLibelle() + ", saison=" + saison + ", quantite=" + quantite + '}';
+    }
     
     
     
