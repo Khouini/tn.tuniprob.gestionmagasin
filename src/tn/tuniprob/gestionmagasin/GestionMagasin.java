@@ -17,12 +17,26 @@ public class GestionMagasin {
         Produit P1 = new Produit(1, "Booga");
         Produit P2 = new Produit(2, "Fanta");
         Produit P3 = new Produit(3, "Coca");
+        Produit P4 = new Produit(1, "libelle", "marque", -4);
         Magasin M = new Magasin(1, "Manzah");
-        M.ajouter(P1);
-        M.ajouter(P2);
+        try {
+            M.ajouter(P1);
+        } catch (MagasinPleinException | PrixNegatifException e) {
+            System.err.println(e.getMessage());
+        }
+        try {
+            M.ajouter(P2);
+        } catch (MagasinPleinException | PrixNegatifException e) {
+            System.err.println(e.getMessage());
+        }
         try {
             M.ajouter(P3);
-        } catch (MagasinPleinException e) {
+        } catch (MagasinPleinException | PrixNegatifException e) {
+            System.err.println(e.getMessage());
+        }
+        try {
+            M.ajouter(P4);
+        } catch (MagasinPleinException | PrixNegatifException e) {
             System.err.println(e.getMessage());
         }
 
