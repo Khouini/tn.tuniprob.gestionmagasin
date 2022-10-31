@@ -11,7 +11,7 @@ import java.time.LocalDate;
 
 public class GestionMagasin {
 
-    public static void main(String[] args) throws PrixNegatifException, MagasinPleinException  {
+    public static void main(String[] args) throws PrixNegatifException, MagasinPleinException {
         System.out.println("--------------- Prosit 6 exceptions ----------------");
         System.out.println("--------------- Question 3 ----------------");
         Produit P1 = new Produit(1, "Booga");
@@ -20,7 +20,12 @@ public class GestionMagasin {
         Magasin M = new Magasin(1, "Manzah");
         M.ajouter(P1);
         M.ajouter(P2);
-        M.ajouter(P3);
+        try {
+            M.ajouter(P3);
+        } catch (MagasinPleinException e) {
+            System.err.println(e.getMessage());
+        }
+
         System.out.println(M.toString());
     }
 }
